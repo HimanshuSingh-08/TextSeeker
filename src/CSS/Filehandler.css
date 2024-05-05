@@ -7,3 +7,8 @@
     height: 200px;
     width: 300;
 }
+
+.highlight {
+    background-color: yellow; /* or any color that stands out */
+  }
+  

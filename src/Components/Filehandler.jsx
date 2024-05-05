@@ -5,23 +5,32 @@ export default function Filehandler({ keyword }) {
   // Need a state to store the file and the count of keywords.
   const [fileContent, setFileContent] = useState("");
   const [keywordCount, setKeywordCount] = useState(0);
+  const [highlightedContent, setHighlightedContent] = useState("");
 
   useEffect(() => {
-    // Function to count occurrences of the keyword
     const countOccurrences = (content, keyword) => {
-      // If the keyword is empty, set the count to 0
       if (keyword === '') {
         setKeywordCount(0);
+        setHighlightedContent(content); // Display original content when no keyword
         return;
       }
-      // Count occurrences of the keyword
-      const count = content.split(keyword).length - 1;
+
+      const regex = new RegExp(`(${keyword})`, 'gi'); // Case insensitive search
+      const matches = content.match(regex) || [];
+      const count = matches.length;
       setKeywordCount(count);
+
+      // Replace all occurrences of keyword with highlighted version
+      const highlighted = content.replace(regex, `<span class="highlight">$1</span>`);
+      setHighlightedContent(highlighted);
     };
 
-    // Call countOccurrences function with fileContent and keyword
-    countOccurrences(fileContent, keyword);
-  }, [fileContent, keyword]);
+    // Ensure fileContent is processed only if non-empty and keyword is updated
+    if (fileContent) {
+      countOccurrences(fileContent, keyword);
+    }
+  }, [fileContent, keyword]); // Dependencies: only re-run if these change
+
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0]; // Capture the input file using event
@@ -49,7 +58,8 @@ export default function Filehandler({ keyword }) {
 
         <div className="file-layout">
           <p className="file-content">
-            <h3>File Content :</h3>: {fileContent}
+            <h3>File Content is : </h3>
+            <div dangerouslySetInnerHTML={{ __html: highlightedContent }} />
           </p>
         </div>
         <div>
@@ -57,6 +67,7 @@ export default function Filehandler({ keyword }) {
             The total number of occurrences of "{keyword}" are : {keywordCount}
           </h1>
         </div>
+      
       </div>
     </>
   );
