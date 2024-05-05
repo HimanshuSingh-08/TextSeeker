@@ -1,11 +1,14 @@
+import Filehandler from "./Components/Filehandler";
+import Header from "./Components/Header";
+import SearchBar from "./Components/SearchBar";
 
 function App() {
-
   return (
     <>
-       <h1>Hello this is textSeeker !!!</h1>
+      <Header />
+      <SearchBar />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
