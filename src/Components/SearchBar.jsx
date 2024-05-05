@@ -1,13 +1,13 @@
 import { useState } from "react";
 import '../CSS/SearchBar.css';
+import Filehandler from "./Filehandler";
+
 
 export default function SearchBar() {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState();
 
     const handleSearchInputChange = (event) => {
       setSearchQuery(event.target.value);
-      // You can perform search logic here
-
     };
   
     return (
@@ -20,6 +20,7 @@ export default function SearchBar() {
           placeholder="Search..."
         />
         <button className="search-button">Search</button>
+        <Filehandler keyword={searchQuery}/>
       </div>
     );
 }
