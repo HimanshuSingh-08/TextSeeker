@@ -83,6 +83,7 @@ export default function SearchBar() {
       <input
         ref={fileInputRef}
         type="file"
+        className="file-input"
         style={{ display: "none" }} // Hide the file input
         onChange={(e) => console.log("File selected:", e.target.files[0])}
       />
