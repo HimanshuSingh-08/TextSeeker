@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import "../CSS/Filehandler.css";
 
 export default function Filehandler({ keyword, onCountUpdate }) {
-  // Need a state to store the file and the count of keywords.
+
   const [fileContent, setFileContent] = useState("");
-  const [keywordCount, setKeywordCount] = useState(0);
+  const [searchedTermCount, setSearchedTermCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
   const [highlightedContent, setHighlightedContent] = useState("");
 
   useEffect(() => {
     const countOccurrences = (content, keyword) => {
-      console.log(keyword);
+    //   console.log(keyword);
       if (keyword === "") {
-        setKeywordCount(0);
+        setSearchedTermCount(0);
         setHighlightedContent(content); // Display original content when no keyword
         return;
       }
@@ -20,7 +20,7 @@ export default function Filehandler({ keyword, onCountUpdate }) {
       const regex = new RegExp(`(${keyword})`, "gi"); // Case insensitive search
       const matches = content.match(regex) || [];
       const count = matches.length;
-      setKeywordCount(count);
+      setSearchedTermCount(count);
       onCountUpdate(count); // Call the callback function with the count
 
       // Replace all occurrences of keyword with highlighted version
@@ -73,7 +73,7 @@ export default function Filehandler({ keyword, onCountUpdate }) {
         </div>
         <div className="details">
           <h3>
-            The total number of occurrences of "{keyword}" are : {keywordCount}
+            The total number of occurrences of "{keyword}" are : {searchedTermCount}
           </h3>
           <h3>The total number of words in the text are: {wordCount}</h3>
         </div>
