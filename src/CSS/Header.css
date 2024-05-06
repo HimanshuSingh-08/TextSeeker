@@ -1,5 +1,7 @@
 .heading-container{
     text-align: center;
-    font-style: sans-serif;
-    margin-bottom: 50px;
+    background-color:#CAF4FF;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    font-family: cursive;
 }

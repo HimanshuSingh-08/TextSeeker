@@ -56,25 +56,29 @@ export default function Filehandler({ keyword, onCountUpdate }) {
 
   return (
     <>
-      <div>
+      <div className="file-handler-container" >
         <h3>Select File : </h3>
         <input
           type="file"
           name="text-file"
           id="txt"
+          className="file-input"
           onChange={handleFileChange}
         />
 
         <div className="file-layout">
-          <div dangerouslySetInnerHTML={{ __html: highlightedContent }} />
+          <div 
+           className="file-content"
+          dangerouslySetInnerHTML={{ __html: highlightedContent }} />
         </div>
-        <div>
+        <div className="details">
           <h3>
             The total number of occurrences of "{keyword}" are : {keywordCount}
           </h3>
           <h3>The total number of words in the text are: {wordCount}</h3>
         </div>
       </div>
+       
     </>
   );
 }
