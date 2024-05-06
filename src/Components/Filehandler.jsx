@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../CSS/Filehandler.css";
 
-export default function Filehandler({ keyword }) {
+export default function Filehandler({ keyword  , onCountUpdate}) {
   // Need a state to store the file and the count of keywords.
   const [fileContent, setFileContent] = useState("");
   const [keywordCount, setKeywordCount] = useState(0);
@@ -19,6 +19,7 @@ export default function Filehandler({ keyword }) {
       const matches = content.match(regex) || [];
       const count = matches.length;
       setKeywordCount(count);
+      onCountUpdate(count);  // Call the callback function with the count
 
       // Replace all occurrences of keyword with highlighted version
       const highlighted = content.replace(regex, `<span class="highlight">$1</span>`);
@@ -29,7 +30,7 @@ export default function Filehandler({ keyword }) {
     if (fileContent) {
       countOccurrences(fileContent, keyword);
     }
-  }, [fileContent, keyword]); // Dependencies: only re-run if these change
+  }, [fileContent, keyword , onCountUpdate]); // Dependencies: only re-run if these change
 
 
   const handleFileChange = (event) => {
@@ -63,9 +64,10 @@ export default function Filehandler({ keyword }) {
           </p>
         </div>
         <div>
-          <h1>
+          <h3>
             The total number of occurrences of "{keyword}" are : {keywordCount}
-          </h1>
+          </h3>
+          
         </div>
       
       </div>
