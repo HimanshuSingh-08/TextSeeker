@@ -1,25 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import '../CSS/SearchBar.css';
 import Filehandler from "./Filehandler";
 
 export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchHistory, setSearchHistory] = useState([]);
+    const [timer, setTimer] = useState(null);
 
-    const handleSearchInputChange = (event) => {
-        const keyword = event.target.value;
-        setSearchQuery(keyword);
-        // Update history if this is a new keyword or first input
+    const debounceSearch = useCallback((keyword) => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        const newTimer = setTimeout(() => {
+            updateSearchHistory(keyword);
+        }, 2000); // 2 seconds delay
+        setTimer(newTimer);
+    }, [timer]);
+
+    const updateSearchHistory = (keyword) => {
         if (keyword && !searchHistory.some(item => item.keyword.toLowerCase() === keyword.toLowerCase())) {
             setSearchHistory(prevHistory => [
                 ...prevHistory, 
-                { keyword: keyword, occurrences: 0 } // Initialize with zero occurrences
+                { keyword: keyword, occurrences: 0 }
             ]);
         }
     };
 
+    const handleSearchInputChange = (event) => {
+        const keyword = event.target.value;
+        setSearchQuery(keyword);
+        debounceSearch(keyword);
+    };
+
     const handleCountUpdate = (occurrences) => {
-        // Update occurrences for the latest keyword
         setSearchHistory(prevHistory => prevHistory.map(item =>
             item.keyword.toLowerCase() === searchQuery.toLowerCase() ? 
             { ...item, occurrences } : 
