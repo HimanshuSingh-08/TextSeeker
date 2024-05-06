@@ -9,6 +9,7 @@ export default function SearchBar() {
     const searchInputRef = useRef(null);  // Ref for the search input
     const fileInputRef = useRef(null);  // Ref for the file input
 
+    // to make create a time gap 
     const debounceSearch = useCallback((keyword) => {
         if (timer) {
             clearTimeout(timer);
@@ -19,6 +20,7 @@ export default function SearchBar() {
         setTimer(newTimer);
     }, [timer]);
 
+    // to update the history 
     const updateSearchHistory = (keyword) => {
         if (keyword && !searchHistory.some(item => item.keyword.toLowerCase() === keyword.toLowerCase())) {
             setSearchHistory(prevHistory => [
@@ -28,12 +30,14 @@ export default function SearchBar() {
         }
     };
 
+    //to set the value from the input taken
     const handleSearchInputChange = (event) => {
         const keyword = event.target.value;
         setSearchQuery(keyword);
         debounceSearch(keyword);
     };
 
+    // to handle the search history
     const handleCountUpdate = (occurrences) => {
         setSearchHistory(prevHistory => prevHistory.map(item =>
             item.keyword.toLowerCase() === searchQuery.toLowerCase() ? 
@@ -42,6 +46,7 @@ export default function SearchBar() {
         ));
     };
 
+    //to handle the keyboards shortcut
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === ' ' && document.activeElement !== searchInputRef.current) {
