@@ -22,7 +22,7 @@ TextSeeker is a simple front-end application that allows users to upload and sea
 
 * Upload a Text File: Users can upload text files to search within.
 * View Text Content: Displays the contents of the uploaded text file on the screen.
-* Search Functionality: Users can search for specific words or sentences. The application shows the total number of * * * * occurrences and highlights the search results within the text.
+* Search Functionality: Users can search for specific words or sentences. The application shows the total number  occurrences and highlights the search results within the text.
 * Search History: Keeps a log of previous searches for easy access and analysis (bonus feature).
 * Word Count: Displays the total word count of the text file (bonus feature).
 * Keyboard Shortcuts: Facilitates navigation and interaction using keyboard shortcuts for efficiency (bonus feature).
