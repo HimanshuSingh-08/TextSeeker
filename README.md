@@ -15,15 +15,17 @@ Word Count: Displays the total word count of the text file (bonus feature).
 Keyboard Shortcuts: Facilitates navigation and interaction using keyboard shortcuts for efficiency (bonus feature).
 
 # Technologies Used
-ReactJS
-Node.js (for backend, if applicable)
-CSS for styling
+* ReactJS
+* Node.js (for backend, if applicable)
+* CSS for styling
 
 # Project Structure
-SearchBar: Component to input search queries.
-TextFileInput: Component for uploading text files.
-TextRenderer: Component to display the text file and highlight search results.
-SearchHistory: Component to display the history of search queries.
+* SearchBar: Component to input search queries.
+* TextFileInput: Component for uploading text files.
+* TextRenderer: Component to display the text file and highlight search results.
+* SearchHistory: Component to display the history of search queries.
+
+![alt text](<Screenshot 2024-05-07 184647.png>)
 
 # Setup and Installation
 1) Clone the repository:
