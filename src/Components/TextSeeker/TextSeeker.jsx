@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import Textrenderer from "../Textrenderer/Textrenderer";
 import TextFileInput from "../TextFileInput/TextFileInput";
