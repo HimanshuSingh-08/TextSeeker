@@ -30,8 +30,8 @@ TextSeeker is a simple front-end application that allows users to upload and sea
 
 # Technologies Used
 * ReactJS
-* Node.js (for backend, if applicable)
-* CSS for styling
+* Node.js
+* Tailwind CSS for styling
 
 # Project Structure
 * SearchBar: Component to input search queries.
